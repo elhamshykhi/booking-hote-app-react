@@ -1,0 +1,76 @@
+/* leaflet css */
+@import url("https://unpkg.com/leaflet@1.9.4/dist/leaflet.css");
+
+.active {
+  color: #f6c634;
+}
+
+.hotel p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @supports (-webkit-line-clamp: 3) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+  }
+}
+/* ====================== calendar styles ====================== */
+.rdrDateDisplayWrapper {
+  display: none;
+}
+.rdrDays,
+.rdrWeekDays,
+.rdrMonthAndYearWrapper {
+  width: 95%;
+  margin: 0 auto;
+}
+.rdrMonths {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.rdrMonthPicker select,
+.rdrYearPicker select {
+  padding: 0 !important;
+}
+.rdrCalendarWrapper,
+.rdrDateRangeWrapper {
+  background-color: #303842 !important;
+  border: 1px solid #363e49;
+}
+.rdrNextPrevButton {
+  background-color: #f6c634 !important;
+}
+.rdrWeekDays span {
+  color: #f6c634 !important;
+}
+.rdrDayDisabled {
+  background-color: #363e49 !important;
+}
+.rdrDayDisabled span {
+  color: #5d646a !important;
+}
+.rdrDay
+  span:not(
+    .rdrInRange,
+    .rdrEndEdge,
+    .rdrStartEdge,
+    .rdrDayDisabled span,
+    .rdrDayPassive span span
+  ) {
+  color: white !important;
+  border: none;
+}
+.rdrDay.rdrDayPassive span span {
+  color: #5d646a !important;
+}
+.rdrMonthPicker select,
+.rdrYearPicker select {
+  color: #f6c634 !important;
+}
