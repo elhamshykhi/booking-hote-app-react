@@ -6,12 +6,12 @@ import SearchBar from "./SearchBar";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 function AppLayout() {
-  const { isOpenSearchBar, serIsOpenSearchBar } = useApp();
+  const { isOpenSearchBar, setIsOpenSearchBar } = useApp();
   const searchBarRef = useRef();
 
   useOutsideClick(
     searchBarRef,
-    () => serIsOpenSearchBar(false),
+    () => setIsOpenSearchBar(false),
     "searchBarIcon"
   );
 

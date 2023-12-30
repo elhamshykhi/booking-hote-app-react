@@ -1,16 +1,18 @@
-import {
-  BellIcon,
-  BookmarkIcon,
-  MagnifyingGlassIcon,
-  UserIcon,
-} from "@heroicons/react/24/outline";
 import { BiLogOutCircle } from "react-icons/bi";
+import {
+  HiOutlineBell,
+  HiOutlineBookmark,
+  HiOutlineMagnifyingGlass,
+  HiOutlineUser,
+} from "react-icons/hi2";
+
 import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import { useApp } from "../contexts/AppContext";
 import { useAuth } from "../contexts/AuthProvider";
 
 function Navbar() {
-  const { isOpenSearchBar, serIsOpenSearchBar, location } = useApp();
+  const { isOpenSearchBar, setIsOpenSearchBar, location } = useApp();
   const navigate = useNavigate();
   const currentTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -32,11 +34,8 @@ function Navbar() {
       <div className="flex items-center gap-x-2">
         {isAuthentication ? (
           <>
-            <button
-              className="w-8 h-8 flex items-center justify-center bg-oxfordBlue-900 rounded-full"
-              onClick={handleLogout}
-            >
-              <BiLogOutCircle className="w-5 h-5 text-casper-400 pointer-events-none" />
+            <button className="button bg-oxfordBlue-900" onClick={handleLogout}>
+              <BiLogOutCircle className="buttonSvg stroke-casper-400" />
             </button>
             <div className="capitalize flex flex-col">
               <span className="text-[10px] sm:text-xs lg:text-sm text-casper-400">
@@ -54,11 +53,8 @@ function Navbar() {
           </>
         ) : (
           <>
-            <button
-              onClick={handleLogin}
-              className="w-8 h-8 flex items-center justify-center bg-oxfordBlue-900 rounded-full"
-            >
-              <UserIcon className="w-5 h-5 text-casper-400" />
+            <button onClick={handleLogin} className="button bg-oxfordBlue-900">
+              <HiOutlineUser className="buttonSvg stroke-casper-400" />
             </button>
             <Link
               to="/"
@@ -73,23 +69,23 @@ function Navbar() {
       <div className="flex items-center gap-x-1.5">
         {location.pathname !== "/" && (
           <button
-            onClick={() => serIsOpenSearchBar(!isOpenSearchBar)}
-            className="w-8 h-8 flex items-center justify-center bg-oxfordBlue-900 rounded-full relative"
+            onClick={() => setIsOpenSearchBar(!isOpenSearchBar)}
+            className="button bg-oxfordBlue-900 relative"
             id="searchBarIcon"
           >
-            <MagnifyingGlassIcon className="w-5 h-5 text-casper-400 pointer-events-none" />
+            <HiOutlineMagnifyingGlass className="buttonSvg stroke-casper-400" />
           </button>
         )}
 
         <NavLink to="/bookmarks" className="">
-          <button className="w-8 h-8 flex items-center justify-center bg-oxfordBlue-900 rounded-full">
-            <BookmarkIcon className="w-5 h-5 text-casper-400" />
+          <button className="button bg-oxfordBlue-900">
+            <HiOutlineBookmark className="buttonSvg stroke-casper-400" />
           </button>
         </NavLink>
 
-        <button className="w-8 h-8 flex items-center justify-center bg-oxfordBlue-900 rounded-full relative">
+        <button className="button bg-oxfordBlue-900 relative">
           <span className="absolute top-0 right-0 bg-saffron-300 w-1.5 h-1.5 rounded-full"></span>
-          <BellIcon className="w-5 h-5 text-casper-400" />
+          <HiOutlineBell className="buttonSvg stroke-casper-400" />
         </button>
       </div>
     </nav>

@@ -3,7 +3,7 @@ import { useHotels } from "../contexts/HotelsProvider";
 import { useEffect } from "react";
 import { BiBath, BiBed } from "react-icons/bi";
 import { RiHotelBedLine } from "react-icons/ri";
-import { MapPinIcon, StarIcon } from "@heroicons/react/24/outline";
+import { HiOutlineMapPin, HiOutlineStar } from "react-icons/hi2";
 
 import Loader from "./Loader";
 
@@ -32,14 +32,14 @@ function SingleHotel() {
 
           <div className="flex pb-4 text-casper-400 text-xs sm:text-sm flex-col gap-y-1 xs:flex-row xs:justify-between xs:items-center sm:flex-col sm:justify-start sm:items-start md:flex-row md:justify-between md:items-center lg:flex-col lg:justify-start lg:items-start">
             <p className="flex items-center gap-x-1">
-              <MapPinIcon className="w-4 h-4 stroke-saffron-300" />
+              <HiOutlineMapPin className="w-4 h-4 stroke-saffron-300" />
               <span className="capitalize font-thin">
                 {currentHotel.smart_location}
               </span>
             </p>
 
             <div className="flex items-center gap-x-1">
-              <StarIcon className="w-4 h-4 fill-saffron-300 stroke-saffron-300" />
+              <HiOutlineStar className="w-4 h-4 fill-saffron-300 stroke-saffron-300" />
               <span className="break-words">
                 <span className="text-white">
                   {currentHotel.review_scores_rating &&

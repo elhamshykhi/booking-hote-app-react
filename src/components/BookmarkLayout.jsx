@@ -8,13 +8,13 @@ import { useRef } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 function BookmarkLayout() {
-  const { isOpenSearchBar, serIsOpenSearchBar } = useApp();
+  const { isOpenSearchBar, setIsOpenSearchBar } = useApp();
   const { bookmarks } = useBookmarks();
 
   const searchBarRef = useRef();
   useOutsideClick(
     searchBarRef,
-    () => serIsOpenSearchBar(false),
+    () => setIsOpenSearchBar(false),
     "searchBarIcon"
   );
 

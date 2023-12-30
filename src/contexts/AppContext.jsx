@@ -5,11 +5,11 @@ const AppContext = createContext();
 
 function AppProvider({ children }) {
   const location = useLocation();
-  const [isOpenSearchBar, serIsOpenSearchBar] = useState(false);
+  const [isOpenSearchBar, setIsOpenSearchBar] = useState(false);
 
   return (
     <AppContext.Provider
-      value={{ location, isOpenSearchBar, serIsOpenSearchBar }}
+      value={{ location, isOpenSearchBar, setIsOpenSearchBar }}
     >
       {children}
     </AppContext.Provider>

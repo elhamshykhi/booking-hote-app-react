@@ -1,4 +1,4 @@
-import { MapPinIcon } from "@heroicons/react/24/outline";
+import { HiOutlineMapPin } from "react-icons/hi2";
 import useFetch from "../hooks/useFetch";
 import { BiBath, BiBed, BiUser } from "react-icons/bi";
 import Loader from "./Loader";
@@ -59,7 +59,7 @@ function LocationList() {
                   </p>
                   {/* location */}
                   <p className="flex items-center gap-x-1 mb-2">
-                    <MapPinIcon className="w-5 h-5 stroke-saffron-300" />
+                    <HiOutlineMapPin className="w-5 h-5 stroke-saffron-300" />
                     <span className="text-casper-400 text-xs font-thin">
                       {item.smart_location}
                     </span>

@@ -1,11 +1,12 @@
 import {
-  MapPinIcon,
-  CalendarDaysIcon,
-  MagnifyingGlassIcon,
-  MinusIcon,
-  PlusIcon,
-  AdjustmentsHorizontalIcon,
-} from "@heroicons/react/24/outline";
+  HiOutlineMapPin,
+  HiOutlinePlus,
+  HiOutlineMinus,
+  HiOutlineMagnifyingGlass,
+  HiOutlineCalendarDays,
+  HiOutlineAdjustmentsHorizontal,
+} from "react-icons/hi2";
+
 import { useRef, useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 
@@ -74,7 +75,7 @@ function SearchBar() {
     <div className="flex flex-col w-full text-xs lg:text-sm gap-y-1.5 sm:flex-row md:justify-between sm:gap-x-2 flex-wrap md:flex-nowrap">
       {/* destination */}
       <div className="flex items-center gap-x-2 border border-saffron-300 rounded-full py-1 px-1.5 sm:flex-1">
-        <MapPinIcon className="w-5 h-5 stroke-saffron-300" />
+        <HiOutlineMapPin className="buttonSvg stroke-saffron-300" />
         <input
           type="text"
           value={destination}
@@ -89,7 +90,7 @@ function SearchBar() {
 
       {/* date picker */}
       <div className="flex relative items-center gap-x-2 border border-saffron-300 rounded-full cursor-pointer py-1 px-1.5 sm:w-fit md:flex-1">
-        <CalendarDaysIcon className="w-5 h-5 stroke-saffron-300" />
+        <HiOutlineCalendarDays className="buttonSvg stroke-saffron-300" />
         <div
           onClick={() => setIsOpenDate(!isOpenDate)}
           id="dateRangeDropDown"
@@ -119,7 +120,7 @@ function SearchBar() {
           onClick={() => setIsOpenOptions((prev) => !prev)}
           className="flex items-center gap-x-2 py-1"
         >
-          <AdjustmentsHorizontalIcon className="w-5 h-5 stroke-saffron-300" />
+          <HiOutlineAdjustmentsHorizontal className="buttonSvg stroke-saffron-300" />
 
           <div
             id="optionDropDown"
@@ -149,7 +150,7 @@ function SearchBar() {
         className="text-xs text-center w-full capitalize border border-saffron-300 bg-saffron-300 text-shark-950 font-bold rounded-full py-1.5 md:w-8 md:h-8 md:flex md:items-center md:justify-center"
       >
         <span className="md:hidden">check availability</span>
-        <MagnifyingGlassIcon className="w-5 h-5 stroke-shark-950 md:block hidden" />
+        <HiOutlineMagnifyingGlass className="buttonSvg stroke-shark-950 md:block hidden" />
       </button>
     </div>
   );
@@ -167,48 +168,31 @@ function GuestOptionsList({ options, handleOptions, setIsOpenOptions }) {
       className="bg-oxfordBlue-900 shadow-lg z-50 p-4 capitalize absolute top-[calc(100%_+_2px)] w-full max-w-xs mx-auto inset-x-0 rounded-2xl"
     >
       <div className="flex flex-col gap-y-4 text-sm">
-        <OptionItem
-          handleOptions={handleOptions}
-          type="adult"
-          options={options}
-          minLimit={1}
-        />
-        <OptionItem
-          handleOptions={handleOptions}
-          type="children"
-          options={options}
-          minLimit={0}
-        />
-        <OptionItem
-          handleOptions={handleOptions}
-          type="room"
-          options={options}
-          minLimit={1}
-        />
-      </div>
-    </div>
-  );
-}
-
-function OptionItem({ type, options, minLimit, handleOptions }) {
-  return (
-    <div className="flex items-center justify-between">
-      <span className="text-casper-400">{type}</span>
-      <div className="flex items-center justify-between gap-x-2.5 min-w-[85px]">
-        <button
-          onClick={() => handleOptions(type, "dec")}
-          disabled={options[type] <= minLimit}
-          className="bg-saffron-300 text-oxfordBlue-900 w-6 h-6 flex items-center justify-center rounded-md"
-        >
-          <MinusIcon className="w-4 h-4 stroke-2" />
-        </button>
-        <span className="">{options[type]}</span>
-        <button
-          onClick={() => handleOptions(type, "inc")}
-          className="bg-saffron-300 text-oxfordBlue-900 w-6 h-6 flex items-center justify-center rounded-md"
-        >
-          <PlusIcon className="w-4 h-4 stroke-2" />
-        </button>
+        {[
+          { type: "adult", min: 1 },
+          { type: "children", min: 0 },
+          { type: "room", min: 1 },
+        ].map(({ type, min }) => (
+          <div key={type} className="flex items-center justify-between">
+            <span className="text-casper-400">{type}</span>
+            <div className="flex items-center justify-between gap-x-2.5 min-w-[85px]">
+              <button
+                onClick={() => handleOptions(type, "dec")}
+                disabled={options[type] <= min}
+                className="bg-saffron-300 text-oxfordBlue-900 w-6 h-6 flex items-center justify-center rounded-md"
+              >
+                <HiOutlineMinus className="w-4 h-4 stroke-2" />
+              </button>
+              <span className="">{options[type]}</span>
+              <button
+                onClick={() => handleOptions(type, "inc")}
+                className="bg-saffron-300 text-oxfordBlue-900 w-6 h-6 flex items-center justify-center rounded-md"
+              >
+                <HiOutlinePlus className="w-4 h-4 stroke-2" />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

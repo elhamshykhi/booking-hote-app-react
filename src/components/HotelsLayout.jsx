@@ -10,13 +10,17 @@ import useOutsideClick from "../hooks/useOutsideClick";
 
 function HotelsLayout() {
   const { isLoading, hotels } = useHotels();
-  const { isOpenSearchBar, serIsOpenSearchBar } = useApp();
+  const { isOpenSearchBar, setIsOpenSearchBar } = useApp();
 
   const searchBarRef = useRef();
-  useOutsideClick(searchBarRef, () => serIsOpenSearchBar(false),'searchBarIcon');
+  useOutsideClick(
+    searchBarRef,
+    () => setIsOpenSearchBar(false),
+    "searchBarIcon"
+  );
 
   return (
-    <div className="">
+    <div>
       <Navbar />
 
       <div
@@ -30,13 +34,14 @@ function HotelsLayout() {
         <SearchBar />
       </div>
 
-      <div className="max-w-screen-xl mx-auto grid grid-cols-12 px-4 sm:gap-x-4">
-        <div className="order-1 col-span-12 mb-4 sm:mb-0 sm:col-span-6 sm:order-none md:col-span-7 rounded-tl-3xl rounded-bl-3xl overflow-hidden lg:col-span-8 sm:h-[calc(100vh_-_80px)] bg-oxfordBlue-900 rounded-3xl p-4">
+      {/* ! ============================ improve styles ============================ */}
+      <div className="max-w-screen-xl mx-auto grid grid-cols-12 px-4 gap-y-4 sm:gap-x-4 h-[calc(100vh_-_80px)] mb-4">
+        <div className="order-1 flex-grow col-span-12 sm:col-span-6 sm:order-none md:col-span-7 rounded-tl-3xl rounded-bl-3xl overflow-hidden lg:col-span-8 sm:h-[calc(100vh_-_80px)] bg-oxfordBlue-900 rounded-3xl p-4">
           <Outlet />
         </div>
 
         {/* Map */}
-        <div className="h-60 sm:h-[calc(100vh_-_80px)] mb-4 sm:mb-0 rounded-3xl overflow-hidden col-span-12 sm:col-span-6 md:col-span-5 lg:col-span-4">
+        <div className="h-60 sm:h-[calc(100vh_-_80px)] col-span-12 rounded-3xl overflow-hidden sm:col-span-6 md:col-span-5 lg:col-span-4">
           <Map markerLocation={hotels} />
         </div>
       </div>

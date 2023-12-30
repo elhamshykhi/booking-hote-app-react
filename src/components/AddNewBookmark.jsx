@@ -68,9 +68,20 @@ function AddNewBookmark() {
 
   return (
     <div className="h-full">
-      <h2 className="text-center capitalize md:text-lg xl:text-xl font-thin tracking-widest mb-4">
-        add new bookmark
-      </h2>
+      <div className="flex items-center justify-between mb-4 max-w-lg mx-auto">
+        <h2 className="text-center capitalize leading-8 md:text-lg xl:text-xl font-thin tracking-widest">
+          add new bookmark
+        </h2>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+          className="button bg-shark-950"
+        >
+          <HiOutlineArrowUturnLeft className="w-5 h-5 stroke-casper-400" />
+        </button>
+      </div>
 
       {geoCodingError && (
         <p className="text-casper-400 text-center capitalize tracking-widest">
@@ -85,10 +96,13 @@ function AddNewBookmark() {
         <form
           action=""
           onSubmit={handelSubmit}
-          className="flex flex-col gap-y-3 capitalize mb-4 w-full max-w-md mx-auto"
+          className="flex flex-col gap-y-3 capitalize mb-4 w-full max-w-lg mx-auto text-sm md:text-base"
         >
-          <div className="flex flex-col gap-y-1.5">
-            <label htmlFor="cityName" className="text-casper-400 text-xs">
+          <div className="flex flex-col gap-y-2">
+            <label
+              htmlFor="cityName"
+              className="text-casper-400 text-xs md:text-sm"
+            >
               city name :
             </label>
             <input
@@ -96,47 +110,38 @@ function AddNewBookmark() {
               type="text"
               name="cityName"
               id="cityName"
-              className="bg-shark-950 py-1 px-4 rounded-full focus:outline-none"
+              className="bg-shark-950 py-1.5 md:py-1 px-4 rounded-full focus:outline-none"
               onChange={(e) => setCityName(e.target.value)}
             />
           </div>
 
-          <div className="flex flex-col gap-y-1.5 mb-4">
-            <label htmlFor="country" className="text-casper-400 text-xs">
+          <div className="flex flex-col gap-y-2 mb-4">
+            <label
+              htmlFor="country"
+              className="text-casper-400 text-xs md:text-sm"
+            >
               country :
             </label>
-            <div className="bg-shark-950 py-1 px-4 rounded-full flex items-center justify-between gap-x-2">
+            <div className="bg-shark-950 px-4 rounded-full flex items-center justify-between gap-x-2">
               <input
                 value={country}
                 type="text"
                 name="country"
                 id="country"
-                className="bg-transparent flex-1 focus:outline-none text-ellipsis"
+                className="bg-transparent flex-1 focus:outline-none text-ellipsis py-1.5 md:py-1"
                 onChange={(e) => setCountry(e.target.value)}
               />
               <ReactCountryFlag svg countryCode={countryCode} />
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                navigate(-1);
-              }}
-              className="flex items-center gap-x-2 capitalize bg-shark-950 px-5 text-casper-400 py-1 rounded-full text-sm"
-            >
-              <HiOutlineArrowUturnLeft className="w-5 h-5" />
-              back
-            </button>
-            <button
-              type="submit"
-              className="flex items-center gap-x-2 capitalize bg-shark-950 text-saffron-300 px-5 py-1 rounded-full text-sm"
-            >
-              <HiPlus className="w-5 h-5" />
-              add
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="flex items-center justify-center gap-x-2 bg-saffron-300 text-shark-950 font-semibold uppercase px-5 py-1.5 rounded-full text-sm md:text-base"
+          >
+            <HiPlus className="w-5 h-5" />
+            add
+          </button>
         </form>
       )}
     </div>

@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.button {
+  @apply flex items-center justify-center w-8 h-8 rounded-full;
+}
+.buttonSvg {
+  @apply w-5 h-5 pointer-events-none;
+}
+
 body {
   font-family: "Merriweather", serif;
   background-color: #272d35;
